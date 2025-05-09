@@ -321,8 +321,8 @@ main {
   background-size: contain !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
-  width: 44px !important;
-  height: 44px !important;
+  width: 54px !important;
+  height: 54px !important;
   vertical-align: middle !important;
   margin-right: 5px !important;
   animation: pulseHeartBeat 1.5s ease-in-out infinite; /* Pulse duration increased slightly as per an earlier implicit suggestion */
@@ -434,7 +434,6 @@ section#chapters {
   color: #3e2723;
   background-color: #b89b45;
   font-weight: 700;
-  border-bottom: 1px solid #a1887f;
   display: flex;
   justify-content: space-between;
   align-items: center;
