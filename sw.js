@@ -39,7 +39,7 @@ const urlsToCache = [
  * We use it to populate the initial cache with the core assets.
  */
 self.addEventListener('install', (event) => {
-  console.log('[Service Worker] Installing v', CACHE_NAME);
+  console.log('[Service Worker] Installing', CACHE_NAME);
   // event.waitUntil ensures the service worker is not considered installed
   // until the promise passed to it resolves.
   event.waitUntil(
@@ -78,7 +78,7 @@ self.addEventListener('install', (event) => {
  * We use it to clean up old caches, ensuring only the current cache version remains.
  */
 self.addEventListener('activate', (event) => {
-  console.log('[Service Worker] Activating v', CACHE_NAME);
+  console.log('[Service Worker] Activating', CACHE_NAME);
   // event.waitUntil ensures the activation process is not complete until the promise resolves.
   event.waitUntil(
     // Get all cache keys (names).
