@@ -7,23 +7,26 @@
 // to install the new service worker and cache the new assets.
 const CACHE_NAME = 'vishwadharm-granth-cache-v4'; // Increased version number
 
-// List of core files to cache during the 'install' event.
-// These files are considered the "app shell" and should be available offline.
-// Ensure these paths are correct relative to the service worker script location (which is typically the root).
+// Calculate the base path dynamically based on the service worker's location
+// This handles deployments to subdirectories (like GitHub Pages)
+// It removes the filename ('/sw.js') to get the directory ('/VishwadharmGranth/')
+const basePath = self.location.pathname.replace('/sw.js', '/');
+console.log(`[Service Worker] Calculated basePath: ${basePath}`);
+
+
+// List of core files to cache - core assets
+// Ensure these paths are correct relative to the calculated basePath
 const urlsToCache = [
-  '/', // Cache the root path (usually index.html)
-  '/index.html',
-  '/style.css',
-  '/script.js',
-  '/manifest.json', // Cache the manifest file
-  '/assets/fav-icon.png',
-  '/assets/unity.jpg',
-  '/assets/eternal-harmony.mp3', // Cache the audio file
-  '/assets/glogo.png', // Cache the icon used in the translate button
-  // Caching Google Fonts CSS - Note that this caches the CSS file, but the font files (.woff2 etc.)
-  // referenced inside the CSS will need to be fetched separately by the browser.
-  // SW usually caches these automatically if they pass through the fetch handler and are same-origin/CORS enabled.
-  'https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Noto+Serif+Devanagari:wght@400;700&display=swap'
+  basePath, // Cache the root page (e.g., /VishwadharmGranth/) which is index.html
+  `${basePath}index.html`,
+  `${basePath}style.css`,
+  `${basePath}script.js`,
+  `${basePath}assets/fav-icon.png`,
+  `${basePath}assets/unity.jpg`,
+  `${basePath}assets/eternal-harmony.mp3`, // Cache the audio file
+  `${basePath}assets/glogo.png`, // Cache the icon used in the translate button
+  // Keep the absolute URL for Google Fonts
+   'https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Noto+Serif+Devanagari:wght@400;700&display=swap'
 ];
 
 // ============================================================================
@@ -191,7 +194,7 @@ self.addEventListener('fetch', (event) => {
          // This catch block handles cases where the resource was NOT in the cache AND the network request failed.
          console.warn(`[Service Worker] Network request failed for ${event.request.url}. And resource was not in cache.`, error);
          // Optional: Implement an offline fallback here. For example, show a specific offline page.
-         // return caches.match('/offline.html'); // Assumes an offline.html is in the cache.
+         // return caches.match(basePath + 'offline.html'); // You would need to add offline.html to urlsToCache
          // For this basic app, we'll just let the browser handle the network error if no cache is available.
          // Re-throw the error so the browser's normal error handling (e.g., showing a network error page) can occur.
          throw error;
