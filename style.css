@@ -909,3 +909,10 @@ footer[role="contentinfo"] {
     margin-top: 1.5rem;
   }
 }
+
+@media (min-width: 120px) {
+  .chapter .content table th,
+  .chapter .content table td {
+    white-space: normal;
+  }
+}
