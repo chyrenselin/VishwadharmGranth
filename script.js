@@ -14,7 +14,7 @@ function googleTranslateElementInit() {
   // Console logs for development/validation. Conditionally remove for production.
   console.log('Google Translate Element Initializing...');
   try {
-    const newIncludedLanguages = 'en,hi,es,ar,fr,zh-CN,ru,de,bn,pt,ja,ur,ta,pa,ko,it,tr,nl,id,vi,th,ml,te,mr,gu,kn'; // Added more languages
+    const newIncludedLanguages = 'en,hi,sa,es,ar,fr,zh-CN,ru,de,bn,pt,ja,ur,ta,pa,ko,it,tr,nl,id,vi,th,ml,te,mr,gu,kn'; // Added more languages
 
     const translateWidget = new google.translate.TranslateElement({
       pageLanguage: 'hi',
